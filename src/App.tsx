@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  const names = ['Sara', 'Kacper', 'Anna', 'Tata', 'Mama', 'Stasiu', 'Olga', 'Pradziadek Stanislaw', 'Michal', 'Sonia', 'Damian', 'Bianca', 'Julia']
+  const isDziadek = (name: string): boolean => name.includes('Stanislaw');
+
+  const splitDziadek = (name: string) => {
+    const split = name.split(' ')
+    return (
+      <>
+        <div>{split[0]}</div>
+        <div className="margin">{split[1]}</div>
+      </>
+    )
+  }
+
+  const mappedNames = names.map((name) => <li className="card">
+    <div className={isDziadek(name) ? 'dziadzio-font' : 'name'}>
+      {isDziadek(name) ? splitDziadek(name) : name}
     </div>
+  </li>)
+
+  return (
+    <ul className="cards-wrapper">
+      {mappedNames}
+    </ul>
   );
 }
 
